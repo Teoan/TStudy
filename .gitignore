@@ -1,0 +1,51 @@
+*.swp
+.DS_Store
+.idea
+.vscode
+target
+node_modules
+
+# IntelliJ project files
+#------------------------------------------------------------
+
+*.iml
+out
+gen
+
+
+~$*
+
+# Eclipse IDE
+#------------------------------------------------------------
+**/.classpath
+**/.project
+**/.tern-project
+**/.settings/**
+#**/bin/
+
+# SVN
+**/.svn
+
+# Logs
+#------------------------------------------------------------
+**/*.log
+*.log
+**/logs/*
+*/log/*
+*/logs/*
+*/*/logs/*
+*.log.gz
+
+
+# Other
+#------------------------------------------------------------
+**.pdb
+.factorypath
+workspace
+.project
+.classpath
+
+# Pythone
+#------------------------------------------------------------
+*.pyc
+venv/
