@@ -1,0 +1,3 @@
+com.eastcom.teoan.learning.spi.service.Impl.DevOrderHandleServiceImpl
+com.eastcom.teoan.learning.spi.service.Impl.ProOrderHandleServiceImpl
+com.eastcom.teoan.learning.spi.service.Impl.TestOrderHandleServiceImpl
