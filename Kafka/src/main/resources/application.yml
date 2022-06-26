@@ -1,0 +1,19 @@
+server:
+  servlet:
+    context-path: /
+  port: 9600
+  max-http-header-size: 4048576
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: 10.20.1.37:9092,10.20.1.38:9092,10.20.1.39:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 序列化的类
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: 10.20.1.37:9092,10.20.1.38:9092,10.20.1.39:9092
+      group-id: zhuangjy-test
+      enable-auto-commit: false
+      auto-commit-interval: 100
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer # 反序列化的类
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

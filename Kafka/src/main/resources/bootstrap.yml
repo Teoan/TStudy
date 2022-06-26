@@ -1,9 +1,0 @@
-server:
-  servlet:
-    context-path: /
-  port: 8080
-  max-http-header-size: 4048576
-spring:
-  kafka:
-    producer:
-      bootstrap-servers: 10.20.1.37:9092,10.20.1.38:9092,10.20.1.39:9092

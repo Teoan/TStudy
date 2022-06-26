@@ -5,7 +5,8 @@ package com.eastcom.teoan.learning.contant;
  * @description
  * @date 2022-06-13 17:23
  */
-public class KafakContant {
+public class KafkaContant {
 
     public static final String TOPIC_NAME = "zhuangjy-kafka-test";
+    public static final String GROUP_ID = "zhuangjy-test";
 }

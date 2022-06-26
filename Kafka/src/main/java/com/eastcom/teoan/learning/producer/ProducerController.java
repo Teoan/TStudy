@@ -1,6 +1,6 @@
 package com.eastcom.teoan.learning.producer;
 
-import com.eastcom.teoan.learning.contant.KafakContant;
+import com.eastcom.teoan.learning.contant.KafkaContant;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +20,6 @@ public class ProducerController {
 
     @PostMapping("/sendMessage")
     public void sandMessage(){
-        kafkaTemplate.send(KafakContant.TOPIC_NAME,"test");
+        kafkaTemplate.send(KafkaContant.TOPIC_NAME,"zhuangjy-test","test");
     }
 }
