@@ -28,7 +28,7 @@
                         <manifestEntries>
                             <Project-name>${project.name}</Project-name>
                             <Project-version>${project.version}</Project-version>
-                            <Premain-Class>com.eastcom.teoan.learning.java.agent.Agent</Premain-Class>
+                            <Premain-Class>com.teoan.learning.learning.java.agent.Agent</Premain-Class>
                         </manifestEntries>
                     </archive>
                     <skip>true</skip>
