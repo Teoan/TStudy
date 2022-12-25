@@ -18,10 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 /**
@@ -37,7 +34,6 @@ public class RedissonApplicationTest {
     RedissonClient redissonClient;
     @Resource
     Executor execute;
-
 
     @Resource
     ObjectMapper objectMapper;
@@ -114,6 +110,54 @@ public class RedissonApplicationTest {
         log.info("oldValues:[{}]",objectMapper.writeValueAsString(oldValues));
         Set<Object> removeValues = myMultimap.removeAll("key2");
         log.info("removeValues:[{}]",objectMapper.writeValueAsString(removeValues));
+    }
+
+
+
+
+    @Test
+    public void TestRLock() throws InterruptedException, ExecutionException {
+        RLock lock = redissonClient.getLock("lock");
+        //另外的线程拿锁
+        execute.execute(()->{
+            // 与主线程获取同一个锁
+            RLock rLock = redissonClient.getLock("lock");
+            // 加锁以后10秒钟自动解锁
+            rLock.lock(10,TimeUnit.SECONDS);
+            log.info("其他线程拿到锁啦");
+        });
+
+        // 10秒内拿不到锁 会阻塞
+        lock.lock(5, TimeUnit.SECONDS);
+        log.info("主线程拿到锁啦");
+        lock.unlock();
+    }
+
+
+
+    @Test
+    public void TestSemaphore() throws InterruptedException {
+        // 一共设置量5个信号量 子线程先获取3个
+        execute.execute(()->{
+            try {
+            // 需提前在redis中设置key为semaphore 值为对应信号量
+            RSemaphore semaphore = redissonClient.getSemaphore("semaphore");
+            log.info("子线程可用的信号量：[{}]",semaphore.availablePermits());
+            semaphore.acquire(4);
+            // 两秒后释放
+            Thread.sleep(2000);
+            semaphore.release(4);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        Thread.sleep(1000);
+        RSemaphore semaphore = redissonClient.getSemaphore("semaphore");
+        log.info("主线程可用的信号量：[{}]",semaphore.availablePermits());
+        // 主线程获取不到对应数量的信号量 会阻塞
+        semaphore.acquire(3);
+        log.info("主线程获取到对应数量信号量啦");
+        semaphore.release(3);
     }
 
 }
