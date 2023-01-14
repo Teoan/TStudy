@@ -19,6 +19,7 @@
         <module>JavaAgentAndSpi</module>
         <module>Kafka</module>
         <module>Redisson</module>
+        <module>MapStruct</module>
     </modules>
 
     <properties>
@@ -40,11 +41,6 @@
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.28.0-GA</version>
-        </dependency>
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.18.0</version>
         </dependency>
     </dependencies>
 </project>
