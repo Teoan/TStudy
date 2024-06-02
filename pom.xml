@@ -20,11 +20,13 @@
         <module>Kafka</module>
         <module>Redisson</module>
         <module>MapStruct</module>
+        <module>ExcelHandler</module>
+        <module>PowerJobAutoDemo</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
